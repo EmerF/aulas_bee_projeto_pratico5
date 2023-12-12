@@ -1,24 +1,20 @@
-package com.ambev.projetopratico5.model;
+package com.ambev.projetopratico5.dto;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-@Document
-public class Product {
+public class ProductDTO {
     private String id;
 
+    @NotBlank(message = "Name cannot be empty")
     private String name;
 
+    @Size(min = 10, message = "the description must contain at least 4 characters ")
     private String descriptions;
 
-    private double price;
-
-    @Override
-    public String toString(){
-        return "Product{" +
-                "name:'" + name + '\'' +
-                ", descriptions:'" + descriptions + '\'' +
-                ", price:" + price + '}';
-    }
+    @DecimalMin(value = "1", message = "the price must be greater than 0")
+    private float price;
 
     public String getId() {
         return id;
@@ -44,14 +40,11 @@ public class Product {
         this.descriptions = descriptions;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
-
-
-
 }
