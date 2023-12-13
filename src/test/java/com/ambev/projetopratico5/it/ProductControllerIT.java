@@ -45,7 +45,7 @@ public class ProductControllerIT {
         createProductBaseIT();
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/store/products/search/{name}",productDTO.getName()))
+                        .get("/api/products/search/{name}",productDTO.getName()))
                 .andExpect(status().isOk())
                 .andReturn();
         String resultProduct = result.getResponse().getContentAsString();
@@ -66,7 +66,7 @@ public class ProductControllerIT {
         createProduct();
         productDTO.setName("Different name!");
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/store/products/search/{name}",
+                        .get("/api/products/search/{name}",
                                 productDTO.getName()))
                 .andExpect(status().isNotFound())
                 .andReturn();
@@ -79,7 +79,7 @@ public class ProductControllerIT {
     public void deleteOneProductIT() throws Exception {
         createProduct();
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/store/products/{id}", productDTOReturns.getId()))
+                        .delete("/api/products/{id}", productDTOReturns.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
         String ret = result.getResponse().getContentAsString();
@@ -90,7 +90,7 @@ public class ProductControllerIT {
 
     private void createProduct() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/store/products")
+                        .post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
                 .andExpect(status().isOk())
@@ -101,7 +101,7 @@ public class ProductControllerIT {
 
     private void createProductNaBaseNullError() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/store/products")
+                        .post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
                 .andExpect(status().isBadRequest())
@@ -132,7 +132,7 @@ public class ProductControllerIT {
     }
     private void createProductBaseIT() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/store/products")
+                        .post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
                 .andExpect(status().isOk())
