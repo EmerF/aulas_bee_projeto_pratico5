@@ -1,6 +1,9 @@
 package com.ambev.projetopratico5.model;
 
-public class SoftDrinks {
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "softDrinks")
+public class SoftDrinks extends Product{
 
     private boolean zero;
 
