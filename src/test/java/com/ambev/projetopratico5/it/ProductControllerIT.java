@@ -1,11 +1,10 @@
-package com.ambev.projetopratico5.it;
+package com.ambev.projetopratico5;
 
 
 
 import com.ambev.projetopratico5.dto.ProductDTO;
 import com.ambev.projetopratico5.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,7 +44,8 @@ public class ProductControllerIT {
         createProductBaseIT();
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/products/search/{name}",productDTO.getName()))
+                        .get("/api/products/search/{name}"
+                                ,productDTO.getName()))
                 .andExpect(status().isOk())
                 .andReturn();
         String resultProduct = result.getResponse().getContentAsString();
@@ -79,7 +79,7 @@ public class ProductControllerIT {
     public void deleteOneProductIT() throws Exception {
         createProduct();
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/api/products/{id}", productDTOReturns.getId()))
+                        .delete("/store/products/{id}", productDTOReturns.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
         String ret = result.getResponse().getContentAsString();
@@ -90,7 +90,7 @@ public class ProductControllerIT {
 
     private void createProduct() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/products")
+                        .post("/store/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
                 .andExpect(status().isOk())
@@ -101,7 +101,7 @@ public class ProductControllerIT {
 
     private void createProductNaBaseNullError() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/products")
+                        .post("/store/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
                 .andExpect(status().isBadRequest())
@@ -132,7 +132,7 @@ public class ProductControllerIT {
     }
     private void createProductBaseIT() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/products")
+                        .post("/store/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
                 .andExpect(status().isOk())
