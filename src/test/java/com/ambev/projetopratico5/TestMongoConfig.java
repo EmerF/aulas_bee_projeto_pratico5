@@ -9,15 +9,15 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @EnableMongoRepositories(
-        basePackages = "com.ambev.techempowers.repository")
-@ComponentScan(basePackages = "com.ambev.techempowers")
+        basePackages = "com.ambev.projetopratico5.repository")
+@ComponentScan(basePackages = "com.ambev.projetopratico5")
 public class TestMongoConfig {
-
     @Bean
     public MongoTemplate mongoTemplate() {
-        // You can customize the connection details for testing
+
         String testMongoUri = "mongodb://0.0.0.0:27017/meumongo";
         return new MongoTemplate(
                 new SimpleMongoClientDatabaseFactory(testMongoUri));
     }
+
 }
