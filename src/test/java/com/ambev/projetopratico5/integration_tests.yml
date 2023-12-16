@@ -1,0 +1,29 @@
+  name: Testes de Integração
+
+  on:
+    push:
+      branches:
+        - main
+
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout do código
+          uses: actions/checkout@v2
+
+        - name: Configurar o ambiente
+          run: |
+            # Configurações adicionais, se necessário
+            echo "Configurar o ambiente"
+
+        - name: Configurar o Java
+          uses: actions/setup-java@v2
+          with:
+            distribution: 'adopt'
+            java-version: '11'
+
+        - name: Executar testes de integração
+          run: |
+            ./mvnw test -Pintegration-tests
