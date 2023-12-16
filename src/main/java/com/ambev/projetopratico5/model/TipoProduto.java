@@ -1,5 +1,7 @@
 package com.ambev.projetopratico5.model;
 
+import java.util.Optional;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document
@@ -26,5 +28,13 @@ public class TipoProduto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public TipoProduto save(TipoProduto tipoProduto) {
+        return null;
+    }
+
+    public Optional<TipoProduto> findById(String id2) {
+        return null;
     }
 }

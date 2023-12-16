@@ -5,14 +5,23 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class ProdutoDTO {
-
     private String id;
-    @NotBlank(message = "Informe o nome do produto")
+    @NotBlank(message = "O nome não pode ser vazio")
     private String nome;
-    @Size(min = 10, message = "Descrição deve ter no mínimo 10 caracteres")
+
+    @Size(min = 10, message = "A descrição deve ter no mínimo 10 caracteres")
     private String descricao;
-    @DecimalMin(value = "1", message = "O preço dever ser maior que 1")
+
+    @DecimalMin(value = "1", message = "O preço deve ser no mínimo 1")
     private double preco;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -36,13 +45,5 @@ public class ProdutoDTO {
 
     public void setPreco(double preco) {
         this.preco = preco;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
