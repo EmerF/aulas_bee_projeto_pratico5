@@ -30,9 +30,9 @@ public class ProdutoController {
     public ResponseEntity<List<ProdutoDTO>> consultarProdutos(@PathVariable String nome) {
         List<ProdutoDTO> produtos = produtoService.consultarPorNome(nome);
         if (CollectionUtils.isEmpty(produtos)) {
-            return ResponseEntity.ok(produtos);
-        } else {
             return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(produtos);
         }
     }
     @GetMapping("/error")
