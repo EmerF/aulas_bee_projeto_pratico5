@@ -1,0 +1,15 @@
+version: '3'
+services:
+  projeto-pratico-5:
+    build:
+      context: .  # Use the current directory for building the Spring Boot app
+    ports:
+      - "8080:8080"  # Map the Spring Boot app's port to the host
+    depends_on:
+      - mongo_db  # Ensure the Spring Boot app starts after the MongoDB container
+
+  mongo_db:
+    image: mongo:latest
+    restart: always # Use the official MongoDB image
+    ports:
+      - "27017:27017"  # Map the MongoDB port to the host
